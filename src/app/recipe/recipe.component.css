@@ -1,0 +1,29 @@
+/*******************************************
+created by Raul Montesdeoca Fuentes - 2017
+*******************************************/
+
+#buttonBackContainer {
+    background-color: lightgrey;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    bottom:0px;
+}
+
+.buttonBack {
+    background-color: transparent;
+    border:none;
+    font-weight:bold;
+    color: green;
+    outline: 0;
+}
+
+.buttonBack:hover {
+    color: black;
+}
+
+#recipeContainer{
+    background-color: white;
+    padding:10px;
+}
+

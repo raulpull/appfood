@@ -1,0 +1,67 @@
+<!--******************************************
+created by Raul Montesdeoca Fuentes - 2017
+******************************************-->
+
+<!--
+Component which show the list of recipes in pages of 10 items
+-->
+
+<!--Main container-->
+<div id="recipes">
+
+    <!--Controller for the recipes pages-->
+    <div id="pages">
+      <!--Previous page button-->
+      <button class="buttonRecipes" *ngIf="recipeFirst > recipesPerPages-1" (click)="pagPrevious()">< Previous</button>
+      <!--Nunber of pages-->
+      Pages: {{ (1 + recipeLast)/recipesPerPages  }} / {{ (1 + recipesLength/recipesPerPages).toFixed(0) }} 
+      <!--Next page button-->
+      <button class="buttonRecipes" *ngIf="recipeLast < recipesLength-1" (click)="pagNext()">Next ></button>
+    </div>
+
+    <!--Table style by Bootstrap to show the list of recipes-->
+    <table id="recipesTable" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Recipes</th>
+            <th>
+              <!--Filter to search on the RECIPE TITLES or ingredients-->
+              <input onfocus="document.getElementById('searchMatch').style.display='block'" onblur="document.getElementById('searchMatch').style.display='none'" (keyup)="search(searchWord.value)" placeholder="Filter recipes" #searchWord/>
+                <!--Mini-windows with the possibles ingredients(lowercase) and RECIPES(UPPERCASE) -->
+                <div id="searchMatch">
+                  <p *ngIf="searchNote != ''">{{ searchNote }}</p>
+                </div>
+            </th>
+            <!--Button to sort by ASC or DESC-->
+            <th><button class="buttonRecipes" (click)="order()">Order by cooking time</button></th>
+          </tr>
+        </thead>
+        <!--Show the list of recipes from every ranges. example: from recipe 0 to recipe 9 in pages of 10 items-->
+        <tbody *ngFor="let recipe of dataRecipes; let i=index" onclick="document.getElementById('recipe').style.display='block'" (click)="showRecipe(recipe['name'])">
+            <tr *ngIf="(i>=recipeFirst) && (i<=recipeLast)">
+                <td>
+                  <!--show the image-->
+                  <img src="{{ recipe['image'] }}" alt="imgRecipe">
+                </td>
+                <td>
+                  <!--show the name-->
+                  <p>{{ recipe["name"] }}</p>
+                </td>     
+                <td class="text-center">
+                  <!--show the cooking time-->
+                  <p>{{ recipe["cookingTime"] }}</p>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <!--Control of unavailable list of recipes-->
+      <div *ngIf="dataRecipes == ''" id="msgNoRecipes">Sorry, we currently have no recipes for you</div>
+
+</div>
+
+<!--Container which show the Recipe and details from the component Recipe with the @inputs-->
+<div id="recipe">
+  <app-recipe [dataRecipe]="dataRecipe" [name]="name" [image]="image" [summary]="summary" [ingredients]="ingredients" [methods]="methods"></app-recipe>
+<div>
+

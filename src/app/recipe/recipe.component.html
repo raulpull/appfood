@@ -1,0 +1,63 @@
+<!--******************************************
+created by Raul Montesdeoca Fuentes - 2017
+******************************************-->
+
+<!--
+Component which show the recipe and details
+-->
+
+<!--Main container-->
+<div id="recipeContainer">
+ 
+    <!--Control of unavailable recipes-->
+    <div *ngIf="name == ''" id="msgNoRecipe">Sorry, this recipe doesn't exist or may have been removed</div>
+
+    <!--Show the name-->
+    <h1>{{ name }}</h1>
+
+    <!--Show the image-->
+    <div align="center"><img src="{{ image }}" alt="imgRecipe"></div>
+
+    <!--Show the summary-->
+    <h5>{{ summary }}</h5>
+
+    <!--Show the ingredients-->
+    <h3>Ingredients</h3>
+
+    <ul style="list-style:none">
+    <li *ngFor="let ingredient_group of ingredients">
+
+      <!--Show the ingredients without group-->
+      <div *ngIf="ingredient_group['group'] == null">
+        <h5>{{ ingredient_group }}</h5>
+      </div>
+
+      <!--Show the title of a ingredients group-->
+      <div *ngIf="ingredient_group['group'] != null">
+        <h4>{{ ingredient_group["group"] }}</h4>
+        <ul style="list-style:none">
+
+        <!--Show the ingredients inside the group-->
+        <li *ngFor="let ingredient_inside of ingredient_group['ingredients']">
+          <h5>{{ ingredient_inside }}</h5>
+        </li>
+        </ul>
+      </div>
+         
+    </li>
+    </ul>
+
+    <!--Show the Preparation method-->
+    <h3>Preparation method</h3>
+    <ol>
+    <li *ngFor="let method of methods">
+      <h5>{{ method }}</h5>
+    </li>
+    </ol>
+
+</div>
+
+<!--Button to close the recipe-->
+<div id="buttonBackContainer">
+    <button class="buttonBack" onclick="document.getElementById('recipe').style.display='none'">< Back</button>
+</div>

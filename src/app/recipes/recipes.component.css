@@ -1,0 +1,48 @@
+/*******************************************
+created by Raul Montesdeoca Fuentes - 2017
+*******************************************/
+
+#recipes {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: 10px;
+}
+#recipe {
+    position: absolute;
+    z-index: 2;
+    display: none;
+}
+
+#recipesTable thead {
+    background-color: lightgrey;
+}
+
+#msgNoRecipes {
+    text-align: center;
+}
+
+#pages {
+    text-align: right;
+    font-size: 10px;
+}
+
+#searchMatch {
+    background-color: lightcyan;
+    position: absolute;
+    font-size: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.buttonRecipes {
+    background-color: transparent;
+    border:none;
+    font-weight:bold;
+    color: grey;
+    outline: 0;
+}
+
+.buttonRecipes:hover {
+    color: black;
+}
